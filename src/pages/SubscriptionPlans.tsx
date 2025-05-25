@@ -152,4 +152,4 @@ export const SubscriptionPlans: React.FC = () => {
       </div>
     </div>
   );
-});
+};
