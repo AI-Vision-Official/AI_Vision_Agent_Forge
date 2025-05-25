@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Brain, ListTodo, Plus, Menu, X, Sparkles, CreditCard } from 'lucide-react';
+import { Brain, ListTodo, Plus, Menu, X, Sparkles, CreditCard, FolderKanban } from 'lucide-react';
 import { useSubscription } from '../hooks/useSubscription';
 
 export const Header: React.FC = () => {
@@ -10,6 +10,7 @@ export const Header: React.FC = () => {
 
   const navItems = [
     { path: '/', label: 'Dashboard', icon: <Brain className="mr-2 h-5 w-5" /> },
+    { path: '/projects', label: 'Projects', icon: <FolderKanban className="mr-2 h-5 w-5" /> },
     { path: '/tasks', label: 'Tasks', icon: <ListTodo className="mr-2 h-5 w-5" /> },
     { path: '/create-agent', label: 'Create Agent', icon: <Plus className="mr-2 h-5 w-5" /> },
     { path: '/subscription', label: 'Subscription', icon: <CreditCard className="mr-2 h-5 w-5" /> }
