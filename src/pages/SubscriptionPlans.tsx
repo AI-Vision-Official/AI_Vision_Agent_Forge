@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Check, Zap, Shield, Star, Sparkles, Building2 } from 'lucide-react';
 import { useSubscription } from '../hooks/useSubscription';
+import { useStripe } from '../hooks/useStripe';
 import { SubscriptionTier } from '../types/types';
 
 const features = {
@@ -37,20 +38,25 @@ const features = {
   ]
 };
 
+const prices = {
+  free: 0,
+  basic: 29,
+  pro: 79,
+  business: 299
+};
+
 export const SubscriptionPlans: React.FC = () => {
   const navigate = useNavigate();
-  const { currentTier, upgradeTier, subscriptionDetails } = useSubscription();
+  const { currentTier, subscriptionDetails } = useSubscription();
+  const { redirectToCheckout } = useStripe();
 
   const handleUpgrade = async (tier: SubscriptionTier) => {
     if (tier === 'free') {
-      upgradeTier(tier);
       navigate('/dashboard');
       return;
     }
 
-    // Here you would typically integrate with Stripe
-    upgradeTier(tier);
-    navigate('/dashboard');
+    await redirectToCheckout(tier);
   };
 
   const getPlanIcon = (tier: SubscriptionTier) => {
@@ -101,7 +107,7 @@ export const SubscriptionPlans: React.FC = () => {
               </div>
               <div className="text-right">
                 <span className="text-2xl font-bold">
-                  ${subscriptionDetails.priceMonthly}
+                  ${prices[tier]}
                 </span>
                 <span className="text-slate-400">/month</span>
               </div>

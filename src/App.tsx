@@ -5,6 +5,7 @@ import { CreateAgent } from './pages/CreateAgent';
 import { AgentDetails } from './pages/AgentDetails';
 import { ManageTasks } from './pages/ManageTasks';
 import { SubscriptionPlans } from './pages/SubscriptionPlans';
+import { SubscriptionSuccess } from './pages/SubscriptionSuccess';
 import { ProjectDashboard } from './pages/ProjectDashboard';
 import { Header } from './components/Header';
 import { AgentProvider } from './context/AgentContext';
@@ -28,6 +29,7 @@ function App() {
                     <Route path="/agent/:id" element={<AgentDetails />} />
                     <Route path="/tasks" element={<ManageTasks />} />
                     <Route path="/subscription" element={<SubscriptionPlans />} />
+                    <Route path="/subscription/success" element={<SubscriptionSuccess />} />
                     <Route path="/projects" element={<ProjectDashboard />} />
                   </Routes>
                 </div>
